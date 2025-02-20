@@ -18,20 +18,20 @@
                 }
             },
             async addTask () {
+                if (this.newTask.trim()==='') return;
                 try {
                     const response = await axios.post(apiUrl,{
-                        title: this.newTask,
-                        completed: false
+                        task: this.newTask,
                     });
                     this.tasks.push(response.data);
                     this.newTask="";
                 } catch (error) {
-                    console.error("Error adding: "+error)
+                    console.error("Error adding task: "+error);
                 }
             },
             async updateTask(task){
                 try {
-                    await axios.put(`${apiUrl}/${task.id}`,task)
+                    await axios.put(`${apiUrl}/${task.id}`,task);
                 } catch (error) {
                     console.error("Error updating task: "+error);
                 }
